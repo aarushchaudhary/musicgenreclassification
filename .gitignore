@@ -1,0 +1,6 @@
+# Credentials file (VERY IMPORTANT)
+config.py
+
+# Jupyter Notebook checkpoints
+/notebooks/.ipynb_checkpoints/
+/notebooks/.jupyter_ystore.db
