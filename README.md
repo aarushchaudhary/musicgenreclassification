@@ -1,19 +1,20 @@
-# Spotify Song Feature Analyzer & Visualizer 🎶📊
+# Music Genre Classification & Recommendation System 🎶📊
 
 ## Overview
 
-This project provides a tool to analyze the audio features of any song from Spotify. You can input a Spotify track URL, and the tool will fetch its metadata and audio features (like `danceability`, `energy`, and `valence`) using the Spotify Web API.
+This project provides a genre-based music recommendation system using YouTube Music. The tool analyzes songs from a local dataset and provides personalized recommendations based on genre preferences using the ytmusicapi library to fetch music data from YouTube Music.
 
-The primary feature is a comparative visualization that plots the song's audio profile on a **radar chart** against the average profile of all songs in a local dataset. This allows for an instant visual comparison of a song's characteristics. The tool also augments the local dataset by adding the newly analyzed song, allowing the collection to grow over time.
+The system allows you to explore music by genre, analyze audio features, and get recommendations based on your preferred genres. The tool uses a comprehensive dataset of songs with various audio features and genres to provide accurate and diverse recommendations.
 
 ---
 
 ## Features
 
-- **Fetch from Spotify:** Retrieves detailed track info and audio features using just a song's URL.
-- **Comparative Analysis:** Calculates the average audio profile from a local CSV dataset.
-- **Interactive Visualization:** Generates a radar chart to visually compare a new song against the dataset average.
-- **Data Augmentation:** Appends the newly fetched song's data to the local dataset for future analysis.
+- **YouTube Music Integration:** Fetches music data and recommendations using ytmusicapi.
+- **Genre-Based Recommendations:** Get personalized song recommendations based on your preferred music genres.
+- **Dataset Analysis:** Analyzes audio features from a comprehensive local dataset.
+- **Interactive Visualizations:** Generates charts and plots to explore genre distributions and audio features.
+- **Music Discovery:** Discover new songs based on genre preferences and audio characteristics.
 
 ---
 
@@ -22,20 +23,19 @@ The primary feature is a comparative visualization that plots the song's audio p
 A clean project structure is crucial for organization and scalability.
 
 ````
-spotify-song-analyzer/
+musicgenreclassification/
 │
 ├── data/
-│   ├── dataset.csv               \# Your initial, raw dataset
-│   └── trained_dataset.csv       \# The growing dataset with new songs
+│   ├── dataset.csv               \# Your initial dataset with songs and genres
+│   └── trained_dataset.csv       \# Processed dataset for recommendations
 │
 ├── notebooks/
-│   └── analysis.ipynb           \# The main Jupyter Notebook for all your work
+│   └── analysis.ipynb           \# The main Jupyter Notebook for analysis and recommendations
 │
 ├── visualizations/
-│   └── chart.png                \# Folder to save generated plots
+│   └── (generated charts)        \# Folder to save generated plots
 │
 ├── .gitignore                    \# To ignore files from version control
-├── config.py                     \# To safely store your Spotify API credentials
 ├── README.md                     \# This file\!
 └── requirements.txt              \# A list of all necessary Python packages
 ````
@@ -49,7 +49,7 @@ Follow these steps to get the project running on your local machine.
 ### 1. Prerequisites
 
 - Python 3.8 or higher
-- A Spotify Developer account to get API credentials. You can create one [here](https://developer.spotify.com/dashboard/).
+- Internet connection to access YouTube Music via ytmusicapi
 
 ### 2. Install Dependencies
 
@@ -64,41 +64,30 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install -r requirements.txt
 ````
 
-### 3\. Add Spotify API Credentials
-
-You need to add your personal Spotify API credentials to the project.
-
-1.  Create a file named `config.py` in the root directory.
-
-2.  Add your Client ID and Client Secret to this file like so:
-
-    ```python
-    # config.py
-    CLIENT_ID = 'YOUR_CLIENT_ID_HERE'
-    CLIENT_SECRET = 'YOUR_CLIENT_SECRET_HERE'
-    ```
-
-**Important:** The `.gitignore` file is already configured to ignore `config.py`, so you won't accidentally commit your secret keys to a version control system like Git.
-
 -----
 
 ## How to Use
 
-1.  Place your initial `dataset.csv` file inside the `data/` folder.
+1.  Place your initial `dataset.csv` file inside the `data/` folder (should contain songs with genre labels and audio features).
 2.  Launch Jupyter Lab from your terminal:
     ```bash
     jupyter lab
     ```
-3.  Open the `song_analysis.ipynb` notebook located in the `notebooks/` directory.
-4.  In the notebook, find the cell where the `track_url` is defined and replace the placeholder with the Spotify URL of the song you want to analyze.
+3.  Open the `analysis.ipynb` notebook located in the `notebooks/` directory.
+4.  In the notebook, specify your preferred genre(s) to get personalized recommendations.
 5.  Run all the cells in the notebook from top to bottom.
-6.  The interactive radar chart will be displayed directly in the notebook. The `music_dataset_augmented.csv` file in the `data/` folder will be automatically updated with the new song's data.
+6.  The system will:
+    - Analyze your dataset
+    - Connect to YouTube Music via ytmusicapi
+    - Generate genre-based recommendations
+    - Display visualizations of genre distributions and audio features
 
 -----
 
 ## Technologies Used
 
-  - **Data Analysis:** Pandas
-  - **API Interaction:** Spotipy
-  - **Visualization:** Plotly
+  - **Data Analysis:** Pandas, NumPy
+  - **API Interaction:** ytmusicapi (YouTube Music)
+  - **Visualization:** Plotly, Matplotlib, Seaborn
+  - **Machine Learning:** Scikit-learn (for genre classification)
   - **Environment:** Jupyter Lab

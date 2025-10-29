@@ -1,5 +1,9 @@
 pandas
-spotipy
+numpy
+ytmusicapi
 plotly
+matplotlib
+seaborn
+scikit-learn
 jupyterlab
 nbformat
